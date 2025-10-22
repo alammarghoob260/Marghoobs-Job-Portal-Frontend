@@ -1,0 +1,185 @@
+/* Sidebar base */
+.sidebar {
+  background-color: #1e1e2f;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+  overflow: visible;
+  position: relative;
+  z-index: 1000;
+}
+
+/* Expanded sidebar */
+.sidebar.expanded {
+  width: 220px;
+  padding: 20px;
+}
+
+/* Collapsed sidebar */
+.sidebar.collapsed {
+  width: 60px;
+  padding: 20px 10px;
+  align-items: center;
+}
+
+/* Sidebar header */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* Logo text */
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* Toggle box */
+.logo-toggle-box {
+  width: 40px;
+  height: 40px;
+  background-color: #0070f3;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  position: relative;
+}
+
+.logo-toggle-box:hover {
+  background-color: #005ac1;
+}
+
+/* JL text */
+.jl-text {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  transition: opacity 0.2s ease;
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Expand icon */
+.expand-icon {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  color: white;
+  pointer-events: none;
+}
+
+.logo-toggle-box:hover .jl-text {
+  opacity: 0;
+}
+
+.logo-toggle-box:hover .expand-icon {
+  opacity: 1;
+}
+
+/* Collapse icon */
+.collapse-icon {
+  color: white;
+}
+
+/* Scrollable nav */
+.sidebar-scroll {
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: visible;
+  width: 100%;
+}
+
+/* Nav list */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Nav item */
+.nav-icon {
+  position: relative;
+  margin: 15px 0;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  transition: all 0.2s ease;
+  padding: 10px;
+  border-radius: 8px;
+  overflow: visible;
+}
+
+.nav-icon:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(2px);
+}
+
+/* Collapsed alignment */
+.sidebar.collapsed .nav-icon {
+  justify-content: center;
+}
+
+/* Icon inside nav */
+.nav-icon .icon {
+  font-size: 1.2rem;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tooltip */
+.tooltip {
+  position: absolute;
+  left: calc(100% + 15px);
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #2c2c2c;
+  color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Tooltip arrow */
+.tooltip::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-right-color: #2c2c2c;
+  z-index: 9999;
+}
+
+/* Show tooltip on hover when collapsed */
+.sidebar.collapsed .nav-icon:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(5px);
+}
+
+/* Hide tooltip when expanded */
+.sidebar.expanded .tooltip {
+  display: none !important;
+}
